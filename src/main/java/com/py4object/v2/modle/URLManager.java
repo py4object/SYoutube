@@ -1,5 +1,7 @@
 package com.py4object.v2.modle;
 
+import org.apache.commons.lang.RandomStringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +13,13 @@ public class URLManager {
     public URLManager(){
         session=new HashMap<String, PlayerSession>();
     }
-    public void put(String mappedUrl, String url) {
+    public String  put( String url) {
+        url=url.substring(url.indexOf("youtube.com/watch?v=")+"youtube.com/watch?v=".length());
+        String mappedUrl= RandomStringUtils.random(20,"abcdefghijklmnopqurstuvwsyz1234567809");
+
         session.put(mappedUrl,new PlayerSession(url));
+
+        return "u/"+mappedUrl;
 
 
     }

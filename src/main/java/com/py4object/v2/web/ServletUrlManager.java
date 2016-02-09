@@ -2,7 +2,6 @@ package com.py4object.v2.web;
 
 import com.py4object.v2.modle.AppManager;
 import com.py4object.v2.modle.URLManager;
-import org.apache.commons.lang.RandomStringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,11 +17,11 @@ import java.io.IOException;
 public class ServletUrlManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url=  request.getParameter("url");
-        url=url.substring(url.indexOf("youtube.com/watch?v=")+"youtube.com/watch?v=".length());
+
         URLManager manager= (URLManager) getServletContext().getAttribute(AppManager.URLMANAGER);
-        String mappedUrl=RandomStringUtils.random(20,"abcdefghijklmnopqurstuvwsyz1234567809");
-        manager.put(mappedUrl,url);
-        response.sendRedirect("u/"+mappedUrl);
+
+        String redirctedURl=manager.put(url);
+        response.sendRedirect(redirctedURl);
 
 
     }
